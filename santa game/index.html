@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Super Bar-io Bros</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f0f8ff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* מסך פתיחה */
+    #startScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url("images/start-bg.jpg") no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 10;
+      padding: 2vh 4vw;
+      box-sizing: border-box;
+    }
+
+    #startScreen h1 {
+      font-size: clamp(24px, 7vw, 36px);
+      color: #e4e4e4;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+      background-color: rgba(95, 60, 60, 0);
+      padding: 10px 20px;
+      border-radius: 20px;
+    }
+
+    #startBtn {
+      padding: 16px 32px;
+      font-size: clamp(18px, 5vw, 24px);
+      font-weight: bold;
+      background: linear-gradient(145deg, #f0efef, #ecb9b9);
+      color: rgb(20, 19, 19);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      width: min(80%, 320px);
+    }
+
+    #startBtn:hover {
+      transform: scale(1.07);
+    }
+
+    /* אזור המשחק */
+    #gameContainer {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    canvas {
+      background: #add8e6;
+      display: block;
+      border: 2px solid #333;
+      width: 100%;
+      height: auto;
+    }
+
+    /* כפתור שחק שוב */
+    #restartBtn {
+      display: none;
+      position: absolute;
+      top: 370px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 14px 28px;
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(145deg, #ff5f5f, #ff8585);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #restartBtn:hover {
+      transform: translateX(-50%) scale(1.08);
+      background: linear-gradient(145deg, #ff4b4b, #ff7373);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes pop {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.05); }
+    }
+
+    #restartBtn.show-pop {
+      animation: pop 1.2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- מסך פתיחה -->
+  <div id="startScreen">
+    <h1>Super Bar-io Bros</h1>
+    <button id="startBtn">🍸 Start Game 🍸</button>
+  </div>
+
+  <!-- המשחק -->
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    <button id="restartBtn">Play again</button>
+  </div>
+
+  <!-- סקריפט המשחק -->
+  <script src="game.js" defer></script>
+</body>
+</html>
